@@ -14,8 +14,12 @@ import JobDetails from './pages/jobs/JobDetails';
 import MyJobs from './pages/jobs/MyJobs';
 import EditJob from './pages/jobs/EditJob';
 
+import Applications from './pages/applications/Applications';
+import Interviews from './pages/interviews/Interviews';
 import ManageJobs from './pages/admin/ManageJobs';
-
+import Dashboard from './pages/dashboard/Dashboard';
+import ManageUsers from './pages/admin/ManageUsers';
+import CreateAdmin from './pages/admin/CreateAdmin';
 export default function App() {
   const { loading } = useAuth();
 
@@ -33,11 +37,7 @@ export default function App() {
         <Route path="/register" element={<Register />} /> 
 
         {/* ALL ROUTES INSIDE HERE REQUIRE THE USER TO BE LOGGED IN */}
-        <Route path="/" element={
-          <ProtectedRoute>
-            <Layout><Home /></Layout>
-          </ProtectedRoute>
-        } />
+        <Route path="/" element={<Layout><Home /></Layout>} />
         
         <Route path="/profile" element={
           <ProtectedRoute>
@@ -75,6 +75,31 @@ export default function App() {
         <Route path="/admin/jobs" element={
           <ProtectedRoute allowedRoles={['admin']}>
             <Layout><ManageJobs /></Layout>
+          </ProtectedRoute>
+        } />
+        <Route path="/applications" element={
+          <ProtectedRoute>
+            <Layout><Applications /></Layout>
+          </ProtectedRoute>
+        } />
+        <Route path="/interviews" element={
+          <ProtectedRoute>
+            <Layout><Interviews /></Layout>
+          </ProtectedRoute>
+        } />
+        <Route path="/dash" element={
+          <ProtectedRoute>
+            <Layout><Dashboard /></Layout>
+          </ProtectedRoute>
+        } />
+      <Route path="/admin/users" element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <Layout><ManageUsers /></Layout>
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/create" element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <Layout><CreateAdmin /></Layout>
           </ProtectedRoute>
         } />
         
